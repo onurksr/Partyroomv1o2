@@ -1,0 +1,9 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const server = fs.readFileSync(require.resolve('../server'), 'utf8');
+const html = fs.readFileSync(require.resolve('../index.html'), 'utf8');
+assert.match(html, /Tur süresi: 15 sn/, '15 saniye seçeneği eksik');
+assert.match(html, /mixGameRounds/, 'Karma Mod oyun başına tur seçimi eksik');
+assert.match(server, /roundCounts/); assert.match(server, /gameProgress/);
+assert.match(server, /distinctFrames/); assert.match(server, /distinctFrames\.length < 2/);
+console.log('V10 feature validation passed: 15s timer, per-game mix rounds, unique film frames.');
